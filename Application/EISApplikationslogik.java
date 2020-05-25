@@ -2,13 +2,12 @@ public class EISApplikationslogik {
 
 
         *  Referenz auf die MapperKlassen, um die Objekte mit der Datenbank abzugleichen
-         *  @autor InesWerner
          */
     
-        private EntryMapper eMapper = null;
+        private ItemMapper iMapper = null;
         
-        public void update(Entry e) throws IllegalArgumentException {
-            eMapper.update(equals(e));
+        public void update(Item i) throws IllegalArgumentException {
+            iMapper.update(i);
         }
         
         

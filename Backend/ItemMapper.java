@@ -33,5 +33,24 @@ public class ItemMapper {
 		return itemMapper;
 	}
 
+
+	public Item update(Item i) {
+		Connection con = DBConnection.connection();
+	
+		try {
+		  Statement stmt = con.createStatement();
+	
+		  stmt.executeUpdate("UPDATE item "
+				  + "SET ItemId=" + i.getId() +"," +
+		   " category=\"" + i.getCategory() + "\",  description=\"" + i.getDescription() +"\", " + "number_of_usage=\"" + i.getNumber_of_usage() +"\", " + "status=\"" + i.getStatus() +"\", " + "size=\"" + i.getSize() +"\", " + "color=\"" + i.getColor()+ "\" WHERE id=" + i.getId());
+	
+		}
+		catch (SQLException e2) {
+		  e2.printStackTrace();
+		}
+	
+		// i zueruck geben
+		return i;
+	  }
     
 }
