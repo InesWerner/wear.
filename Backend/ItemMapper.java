@@ -54,8 +54,8 @@ public class ItemMapper {
 	  }
 	
 
-
-	public Vector<Item> findItemByColor(String color){
+	 //Filterung nach allen Items einer bestimmten Farbe
+	public Vector<Item> findItemsByColor(String color){
 		  Connection con = DBConnection.connection();
 		  Vector<Item> results = new Vector<Item>;
 
@@ -82,11 +82,45 @@ public class ItemMapper {
 			ex.printStackTrace();
 			}
 			
+			//Vector<Items> (mit allen Items einer bestimmten Farbe) wird zurückgegeben
 			return results;
 			}
 
 	  }
 
+	  
+	  //Filterung nach allen Items einer bestimmten Größe
+	  public Vector<Item> findItemsBySize(String size){
+		Connection con = DBConnection.connection();
+		Vector<Item> results = new Vector<Item>;
 
+		try{
+		  Statement stmt = con.createStatement();
+		  
+		  ResultSet rs = stmt.executeQuery("SELECT itemId, category, description, 
+		  number_of_usage, status, size, color FROM item WHERE size=" +"'" + size + "'" );
+		  
+		  while (rs.next()) {
+		  Item i = new Item();
+		  i.setItemId(rs.getInt("id"));
+		  i.setCategory(rs.getString("category"));
+		  i.setDescription(rs.getString("description"));
+		  i.setNumber_of_usage(rs.getInt("number_of_usage"));
+		  i.setStatus(rs.getBoolean("status"));
+		  i.setSize(rs.getString("size"));
+		  i.setColor(rs.getString("color"));
+		  
+		  results.addElement(e);
+		  }
+		  }
+		  catch(SQLException ex){
+		  ex.printStackTrace();
+		  }
+		  
+		  //Vector<Items> (mit allen Items einer bestimmten Größe) wird zurückgegeben
+		  return results;
+		  }
+
+	}
 
 }
