@@ -13,12 +13,16 @@ public class EISApplikationslogik {
         }
         
          //Aufruf ItemMapper findItemsByColor
-        public Vector<Item> getItemsByColor(String color){
-           return this.iMapper.findItemsByColor(color) 
+        public Vector<Item> getItemsByColor(String color) throws IllegalArgumentException{
+           return this.iMapper.findItemsByColor(color);
         }
 
         //Aufruf ItemMapper findItemsBySize
-        public Vector<Item> getItemsBySize(String size){
-            return this.iMapper.findItemsBySize(size) 
+        public Vector<Item> getItemsBySize(String size) throws IllegalArgumentException{
+            return this.iMapper.findItemsBySize(size);
          }
+
+         public Vector<Item> getItemsByStatus(Boolean status) throws IllegalArgumentException {
+            return this.iMapper.filterItemsByStatus(status);
+        }
 }
