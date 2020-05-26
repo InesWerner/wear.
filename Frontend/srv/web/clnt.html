@@ -25,18 +25,45 @@
  <BR/>
  <BR/>
  
-
  
- <label id="tempLabel">Temperatur:</label>
- 
- <br/>      
+ //Hier beginnt Emily
+ <br/>   
+ <label for="fname">category:</label>
+ <input type="text" id="fname" name="fname"><br><br>   
  <input id="save" type="submit" value="Aenderung speichern" />
  
 
 
  <script type="text/javascript">
 
-	
+document.getElementById("inputFirstName").onblur=function(){
+  var content=this.value;
+  if (content==""){
+    document.getElementById("notes").innerHTML="Bitte einen Vornamen angeben";
+  }
+  else
+    document.getElementById("notes").innerHTML="";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//Beispiel
+
+	<label id="tempLabel">Temperatur:</label>
+
 	jQuery(document).ready(function($) {
  
         $('#myTempButton').on('click', function() {
