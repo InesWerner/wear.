@@ -6,32 +6,22 @@
 			  crossorigin="anonymous">
   </script>
 			  
-  <script type="text/javascript">
-  
-  // JQUERY (old but ok):
-  //	https://code.jquery.com/
-  //	https://www.w3schools.com/jquery/default.asp
-  //
-  // mittlerweile sind viele Funktionen von JQuery in Javascript integriert
-  //    https://www.w3schools.com/js/js_jquery_selectors.asp
-  
-	
-  // Javascript meldet ja nicht richtig einen Fehler, deshalb nutze ich immer
-  // einen alert("Test1"); davor und einen danach alert("Test2"); Dann sehe ich
-  // ob das Script auch ganz abgearbeitet wurde.
-
-	// alert("Test1");
-
-	// alert("Test2");
-
-	
-  </script>
  </head>
 <body>
- <h1>Test Client-Server communication to Node.js</H1>
+ <h1>wear.</H1>
  
- <h3>Send:</h3><div id="idSend"><p>NixSend</p></div>
- <h3>Receive:</h3><div id="idReceive"><p>NixReceive</p></div>
+ <h3>Folgende Kleidungstuecke befinden sich in deinem Kleiderschrank:</h3><div id="idSend"><p>Hier muessen alle Kleidungstuecke aufgezaehlt werden</p></div>
+ <form>
+	<fieldset>
+	  <legend>Eintraege</legend>
+
+	</fieldset>
+</form>
+
+
+
+
+ <h3>Folgende Kleidungstuecke sind außerhalb des Kleiderschranks:</h3><div id="idReceive"><p>Hier muessen alle Kleidungsteucke aufgezaehlt werden</p></div>
  <BR/>
  <BR/>
  
@@ -39,23 +29,13 @@
  
  <label id="tempLabel">Temperatur:</label>
  
- <!-- 
- <br/>
- <input id="temp1" type="text" name="tempName" value="0" />  
- -->
- 
  <br/>      
- <input id="myTempButton" type="submit" value="Temperatur holen" />
+ <input id="save" type="submit" value="Aenderung speichern" />
  
- 
+
+
  <script type="text/javascript">
-	// Javascript meldet ja nicht richtig einen Fehler, deshalb nutze ich immer
-	// einen alert("Test1"); davor und einen danach alert("Test2"); Dann sehe ich
-	// ob das Script auch ganz abgearbeitet wurde.
 
-	// alert("Test1");
-
-	// alert("Test2");
 	
 	jQuery(document).ready(function($) {
  
