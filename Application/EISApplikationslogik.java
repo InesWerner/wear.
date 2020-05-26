@@ -25,4 +25,8 @@ public class EISApplikationslogik {
          public Vector<Item> getItemsByStatus(Boolean status) throws IllegalArgumentException {
             return this.iMapper.filterItemsByStatus(status);
         }
+
+
+        // Wenn ein Item entfernt wird muss die Methode zum Löschen der ItemTagConnection aufgerufen werden
+        //Wenn ein Item erzeugt wird muss eine ItemTagConnection erzeugt werden 
 }
