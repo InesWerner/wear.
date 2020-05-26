@@ -38,4 +38,43 @@ public class ItemTagConnectionMapper {
 			e2.printStackTrace();
 		}
 	}
+
+	/**
+	 * Einfügen eines ItemTagConnection-Objekts in die Datenbank. 
+	 * Es wird auch der Primärschlüssel des übergebenen Objekts geprüft.
+	 * @param i das zu speichernde Objekt
+	 * @return das übergebene Objekt
+	 */
+	public ItemTagConnection insert(ItemTagConnecion i){
+	Connection con = DBConnection.connection();
+	
+	try{
+		Statement stmt = con.createStatement();
+
+		//Prüfung, welches der momentan höchste Primärschlüsselwert ist.
+		ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid " + "FROM itemTagConnection ");
+		
+		if(rs.next()){
+
+			//MAXID wird um 1 erhöht
+			i.setId(rs.getInt("maxid") +1);
+			stmt = con.createStatement();
+
+			PreparedStatement stmt2 = con.prepareStatement("INSERT INTO itemTagConnection (id, tagId, itemId) " + "VALUES(?,?,?)");
+			stmt2.setInt(1, i.getId());
+			stmt2.setInt(2, i.getTagId());
+			stmt2.setInt(3, i.getItemId());
+
+			stmt2.execute();
+		}
+
+	catch (SQLException ex){
+	ex.printStackTrace();
+	}
+		
+	return i;
+	}
+
+	}
+
 }
