@@ -5,7 +5,6 @@
 var webSocketPort = 4001;	// Zum Austausch von Meldungen und Kommandos
 var webServerPort = 4000;	// Zum Laden der HRML-Seite
 
-// Server sind nicht multi-threaded etc. etc. - nur Geruest!!!!
 
 //----------------------------------------------------
 // Our WebSocket Server
