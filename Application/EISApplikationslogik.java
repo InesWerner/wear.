@@ -1,9 +1,9 @@
 import java.util.Vector;
 
-public class EISApplikationslogik {
+public class Application {
 
 
-        *  Referenz auf die MapperKlassen, um die Objekte mit der Datenbank abzugleichen
+        /*  Referenz auf die MapperKlassen, um die Objekte mit der Datenbank abzugleichen
          */
     
         private ItemMapper iMapper = null;
