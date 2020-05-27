@@ -62,8 +62,7 @@ public class ItemMapper {
 		  try{
 			Statement stmt = con.createStatement();
 			
-			ResultSet rs = stmt.executeQuery("SELECT itemId, category, description, 
-			number_of_usage, status, size, color FROM item WHERE color=" +"'" + color + "'" );
+			ResultSet rs = stmt.executeQuery("SELECT itemId, category, description, number_of_usage, status, size, color FROM item WHERE color=" +"'" + color + "'" );
 			
 			while (rs.next()) {
 			Item i = new Item();
@@ -97,8 +96,7 @@ public class ItemMapper {
 		try{
 		  Statement stmt = con.createStatement();
 		  
-		  ResultSet rs = stmt.executeQuery("SELECT itemId, category, description, 
-		  number_of_usage, status, size, color FROM item WHERE size=" +"'" + size + "'" );
+		  ResultSet rs = stmt.executeQuery("SELECT itemId, category, description, number_of_usage, status, size, color FROM item WHERE size=" +"'" + size + "'" );
 		  
 		  while (rs.next()) {
 		  Item i = new Item();
