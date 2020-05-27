@@ -34,6 +34,31 @@ public class ItemMapper {
 	}
 
 
+	public Item create(Item i){
+		Connection con = DBConnection.connection();
+	
+		try {
+			PreparedStatement stmt = con.prepareStatement("INSERT INTO <DATABASE_NAME>.item(name, category, description, size, color) VALUES(?,?,?,?,?);");
+			insert.setString(1, i.getName());
+			insert.setString(2, i.getCategory());
+			insert.setString(3, i.getDescription());
+			insert.setString(4, i.getSize());
+			insert.setString(5, i.getColor());
+			insert.executeUpdate();
+	
+			PreparedStatement getNewItem = con.prepareStatement("SELECT * FROM <DATABASE_NAME>.item ORDER BY itemID DESC LIMIT 1;");
+			ResultSet rs = getNewPost.executeQuery();
+			if(rs.next()) {
+				return new Item(rs.getString("itemID"), rs.getString("name"), rs.getString("category"), rs.getString("description"), rs.getString("numberOfUsage"), rs.getString("status"), rs.getString("size"), rs.getString("color"));
+			}  
+		}
+		catch (SQLException e2) {
+		  e2.printStackTrace();
+		}
+
+		return null;
+	}
+
 	public Item update(Item i) {
 		Connection con = DBConnection.connection();
 	
@@ -42,7 +67,7 @@ public class ItemMapper {
 	
 		  stmt.executeUpdate("UPDATE item "
 				  + "SET ItemId=" + i.getId() +"," +
-		   " category=\"" + i.getCategory() + "\",  description=\"" + i.getDescription() +"\", " + "number_of_usage=\"" + i.getNumber_of_usage() +"\", " + "status=\"" + i.getStatus() +"\", " + "size=\"" + i.getSize() +"\", " + "color=\"" + i.getColor()+ "\" WHERE id=" + i.getId());
+		   " category=\"" + i.getCategory() + "\",  description=\"" + i.getDescription() +"\", " + "number_of_usage=\"" + i.getNumberOfUsage() +"\", " + "status=\"" + i.getStatus() +"\", " + "size=\"" + i.getSize() +"\", " + "color=\"" + i.getColor()+ "\" WHERE id=" + i.getId());
 	
 		}
 		catch (SQLException e2) {
@@ -52,6 +77,21 @@ public class ItemMapper {
 		// i zueruck geben
 		return i;
 	  }
+
+
+	  public void delete(Item i){
+		Connection con = DBConnection.getConnection();
+
+		try {    
+			PreparedStatement delete = con.prepareStatement("UPDATE `<DATABASE_NAME>`.`item` SET `DeleteDate`=NOW() WHERE `itemID`=?;");
+			delete.setInt(1, i.getId());
+			delete.executeUpdate();
+		
+		} catch (SQLException e) {
+			throw new MapperException(e);
+		}
+	}
+	
 	
 
 	 //Filterung nach allen Items einer bestimmten Farbe
@@ -69,7 +109,7 @@ public class ItemMapper {
 			i.setItemId(rs.getInt("id"));
 			i.setCategory(rs.getString("category"));
 			i.setDescription(rs.getString("description"));
-			i.setNumber_of_usage(rs.getInt("number_of_usage"));
+			i.setNumberOfUsage(rs.getInt("number_of_usage"));
 			i.setStatus(rs.getBoolean("status"));
 			i.setSize(rs.getString("size"));
 			i.setColor(rs.getString("color"));
@@ -103,7 +143,7 @@ public class ItemMapper {
 		  i.setItemId(rs.getInt("id"));
 		  i.setCategory(rs.getString("category"));
 		  i.setDescription(rs.getString("description"));
-		  i.setNumber_of_usage(rs.getInt("number_of_usage"));
+		  i.setNumberOfUsage(rs.getInt("number_of_usage"));
 		  i.setStatus(rs.getBoolean("status"));
 		  i.setSize(rs.getString("size"));
 		  i.setColor(rs.getString("color"));
@@ -138,7 +178,7 @@ public Vector<Item> filterItemsByStatus(Boolean status){
 	  i.setItemId(rs.getInt("id"));
 	  i.setCategory(rs.getString("category"));
 	  i.setDescription(rs.getString("description"));
-	  i.setNumber_of_usage(rs.getInt("number_of_usage"));
+	  i.setNumberOfUsage(rs.getInt("number_of_usage"));
 	  i.setStatus(rs.getBoolean("status"));
 	  i.setSize(rs.getString("size"));
 	  i.setColor(rs.getString("color"));

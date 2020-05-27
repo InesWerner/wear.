@@ -7,9 +7,17 @@ public class Application {
          */
     
         private ItemMapper iMapper = null;
+
+        public Item createItem(Item i) throws IllegalArgumentException{
+            return this.iMapper.create(i);
+        } 
         
-        public void update(Item i) throws IllegalArgumentException {
+        public void updateItem(Item i) throws IllegalArgumentException {
             iMapper.update(i);
+        }
+
+        public void deleteItem(Item i) throws IllegalAccessException{
+            iMapper.delete(i);
         }
         
          //Aufruf ItemMapper findItemsByColor
