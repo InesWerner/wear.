@@ -26,15 +26,15 @@ public class ItemTagConnectionMapper {
     /**Daten einer <code>ItemTagConnecion</code>-Objekts aus der Datenbank loeschen.
 	* @param m das aus der DB zu loeschende "Objekt"**/
 
-	public void delete(int itemId, int tagId) {
-		Connection con = DBConnection.connection();
+	public void delete(final int itemId, final int tagId) {
+		final Connection con = DBConnection.connection();
 
 		try {
-			Statement stmt = con.createStatement();
+			final Statement stmt = con.createStatement();
 
 			stmt.executeUpdate("DELETE FROM itemTagConnection WHERE itemId=" + itemId " AND tagId=" + tagId);
 
-		} catch (SQLException e2) {
+		} catch (final SQLException e2) {
 			e2.printStackTrace();
 		}
 	}
@@ -48,33 +48,34 @@ public class ItemTagConnectionMapper {
 	public ItemTagConnection insert(ItemTagConnecion i){
 	Connection con = DBConnection.connection();
 	
-	try{
-		Statement stmt = con.createStatement();
+		try{
+			Statement stmt = con.createStatement();
 
-		//Prüfung, welches der momentan höchste Primärschlüsselwert ist.
-		ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid " + "FROM itemTagConnection ");
-		
-		if(rs.next()){
+			//Prüfung, welches der momentan höchste Primärschlüsselwert ist.
+			ResultSet rs = stmt.executeQuery("SELECT MAX(id) AS maxid " + "FROM itemTagConnection ");
+			
+			if(rs.next()){
 
-			//MAXID wird um 1 erhöht
-			i.setId(rs.getInt("maxid") +1);
-			stmt = con.createStatement();
+				//MAXID wird um 1 erhöht
+				i.setId(rs.getInt("maxid") +1);
+				stmt = con.createStatement();
 
-			PreparedStatement stmt2 = con.prepareStatement("INSERT INTO itemTagConnection (id, tagId, itemId) " + "VALUES(?,?,?)");
-			stmt2.setInt(1, i.getId());
-			stmt2.setInt(2, i.getTagId());
-			stmt2.setInt(3, i.getItemId());
+				PreparedStatement stmt2 = con.prepareStatement("INSERT INTO itemTagConnection (id, tagId, itemId) " + "VALUES(?,?,?)");
+				stmt2.setInt(1, i.getId());
+				stmt2.setInt(2, i.getTagId());
+				stmt2.setInt(3, i.getItemId());
 
-			stmt2.execute();
+				stmt2.execute();
+			
+			}catch (SQLException ex){
+			 ex.printStackTrace();
+			}
+				
+			return i;
+
 		}
-
-	catch (SQLException ex){
-	ex.printStackTrace();
-	}
-		
-	return i;
 	}
 
-	}
+	
 
 }
