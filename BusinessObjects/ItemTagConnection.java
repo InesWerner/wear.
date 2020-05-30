@@ -1,5 +1,7 @@
 public class ItemTagConnection {
 
+    //Braucht noch eine ID
+    //Tag braucht noch einen Mapper und eine BO Klasse
     private int tagID;
     private int itemID;
 
