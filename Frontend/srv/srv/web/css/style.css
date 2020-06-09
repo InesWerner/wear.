@@ -1,0 +1,588 @@
+* {
+     box-sizing: border-box;
+}
+ body {
+    margin: 0;
+}
+.form{
+    border-radius:3px;
+    padding:10px 15px;
+    background-color:rgba(0,0,0,0.2);
+}
+.input{
+    width:100%;
+    margin-bottom:15px;
+    padding:7px 10px;
+    border-radius:2px;
+    color:#fff;
+    background-color:#554c57;
+    border:none;
+}
+.select{
+    width:100%;
+    margin-bottom:15px;
+    padding:7px 10px;
+    border-radius:2px;
+    color:#fff;
+    background-color:#554c57;
+    border:none;
+    height:30px;
+}
+.label{
+    width:100%;
+    display:block;
+}
+.button{
+    width:100%;
+    margin:15px 0;
+    background-color:#785580;
+    border:none;
+    color:#fff;
+    border-radius:2px;
+    padding:7px 10px;
+    font-size:1em;
+    cursor:pointer;
+}
+*{
+    box-sizing:border-box;
+}
+body{
+    margin:0;
+}
+.row{
+    display:flex;
+    justify-content:flex-start;
+    align-items:stretch;
+    flex-wrap:nowrap;
+    padding:10px;
+}
+.cell{
+    min-height:75px;
+    flex-grow:1;
+    flex-basis:100%;
+}
+.navbar{
+    background-color:#222;
+    color:#ddd;
+    min-height:50px;
+    width:100%;
+}
+#i4hjn{
+    background-image:linear-gradient(black,black);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    margin:0 11px 0 0;
+    padding:0 3px 0 3px;
+    font-size:25px;
+    color:#ffffff;
+    border:solid #000000;
+    float:left;
+    font-family:Tahoma, Geneva, sans-serif;
+    text-decoration:none;
+    font-weight:200;
+}
+#i6rsr{
+    margin:0 11px 0 0;
+    padding:0 3px 0 3px;
+    font-size:25px;
+    color:#ffffff;
+    border:solid #000000;
+    float:left;
+    font-family:Tahoma, Geneva, sans-serif;
+    text-decoration:none;
+    background-image:linear-gradient(black,black);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    font-weight:200;
+}
+#isrwl{
+    background-image:linear-gradient(black,black);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    margin:0 13px 0 0;
+    padding:0 3px 0 3px;
+    font-size:25px;
+    color:#ffffff;
+    border:solid #000000;
+    float:left;
+    font-family:Tahoma, Geneva, sans-serif;
+    text-decoration:none;
+    font-weight:200;
+}
+#it6fxl{
+    padding:10px 10px 10px 15px;
+    font-size:85px;
+    color:#ffffff;
+    font-family:Tahoma, Geneva, sans-serif;
+    text-align:left;
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    margin:0 0 0 0;
+}
+#inarj{
+    float:right;
+    font-size:19px;
+    color:#675353;
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#i1xro{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-size:25px;
+    font-weight:600;
+    border-radius:0 0 0 0;
+    margin:0 41px 0 41px;
+}
+#itld48{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#524e4e;
+    font-weight:100;
+    border:2px solid #524e4e;
+    margin:0 365px 0 70px;
+    padding:10px 10px 10px 10px;
+}
+#idaszc{
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:25px;
+    color:#474444;
+    font-weight:600;
+    margin:0 235px 0 70px;
+}
+#iatu5{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#iocxt3{
+    font-weight:500;
+}
+#ihb1n{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#iqb2l{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#ij6wl{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#i5ld5{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#iq2q1{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#box2{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#524e4e;
+    font-weight:100;
+    border:2px solid #524e4e;
+    margin:0 365px 0 70px;
+}
+#ikwlby{
+    font-weight:500;
+}
+#i32wj4{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#iujezq{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#in5har{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#ik3upl{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#iu2bbg{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#ik9vw6{
+    font-weight:500;
+    color:#474444;
+    text-align:center;
+}
+#tab1{
+    display:block;
+    position:static;
+    align-self:auto;
+}
+#cell0{
+    height:86px;
+}
+#ifbnti{
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#isdvuq{
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#iwm4f{
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#i1dp2{
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+#ik772{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+#i9nqx{
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+#i6ntm{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+#ifp6t{
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#iphwp9{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+#i5wph{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+#i6yn7{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+#icj19i{
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#iryx5h{
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#iqebx{
+    font-family:Tahoma, Geneva, sans-serif;
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#i58h9{
+    font-family:Tahoma, Geneva, sans-serif;
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#i3xhn{
+    font-family:Tahoma, Geneva, sans-serif;
+}
+#i9ws4{
+    font-family:Tahoma, Geneva, sans-serif;
+}
+#iq16s{
+    font-family:Tahoma, Geneva, sans-serif;
+}
+#iz5fk{
+    font-family:Tahoma, Geneva, sans-serif;
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#iknd97{
+    font-family:Tahoma, Geneva, sans-serif;
+}
+#it576c{
+    font-family:Tahoma, Geneva, sans-serif;
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#i2we9q{
+    font-family:Tahoma, Geneva, sans-serif;
+}
+#iz4ouu{
+    font-family:Tahoma, Geneva, sans-serif;
+    background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#i529xl{
+    margin:41px 450px 16px 70px;
+    float:none;
+    text-align:left;
+    border:3px solid #474444;
+}
+#in6kx8{
+    margin:41px 450px 16px 70px;
+    border:3px solid #474444;
+}
+#iuppul{
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#ianwsf{
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#i7d5lr{
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+}
+#ibwwlg{
+    color:#dddddd;
+    text-align:center;
+    margin:27px 0 -19px 0;
+}
+#i3hjg{
+    color:#ffffff;
+    float:left;
+    margin:27px 0 -10px 0;
+    text-align:center;
+}
+#i6awl{
+    margin:0 235px 0 29px;
+}
+#ibhw39{
+    color:#ffffff;
+    text-align:center;
+    margin:27px 0 -10px 0;
+}
+#i4eku4{
+    color:black;
+    width:100%;
+    height:305.55px;
+}
+#i7tzay{
+    background-image:linear-gradient(#1d1d1d,#1d1d1d);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    font-size:13px;
+}
+#ijiy1q{
+    padding:10px 10px 10px 10px;
+    font-family:Tahoma, Geneva, sans-serif;
+    font-size:25px;
+    color:#474444;
+    margin:41px 1px -41px 61px;
+    font-weight:600;
+}
+#itadau{
+    padding:10px;
+    font-size:25px;
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:600;
+    margin:41px 0 -41px 61px;
+}
+@media (max-width: 768px){
+    .row{
+        flex-wrap:wrap;
+    }
+}
+
+.scrollingtable {
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  width: auto; /*if you want a fixed width, set it here, else set to auto*/
+  min-width: 0/*100%*/; /*if you want a % width, set it here, else set to 0*/
+  height: 188px/*100%*/; /*set table height here; can be fixed value or %*/
+  min-height: 0/*104px*/; /*if using % height, make this large enough to fit scrollbar arrows + caption + thead*/
+  font-family: Verdana, Tahoma, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  padding: 20px 0 20px 0; /*need enough padding to make room for caption*/
+  text-align: left;
+}
+.scrollingtable * {box-sizing: border-box;}
+.scrollingtable > div {
+  position: relative;
+  border-top: 1px solid black;
+  height: 100%;
+  padding-top: 20px; /*this determines column header height*/
+}
+.scrollingtable > div:before {
+  top: 0;
+  background: cornflowerblue; /*header row background color*/
+}
+.scrollingtable > div:before,
+.scrollingtable > div > div:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+.scrollingtable > div > div {
+  min-height: 0/*43px*/; /*if using % height, make this large enough to fit scrollbar arrows*/
+  max-height: 100%;
+  overflow: scroll/*auto*/; /*set to auto if using fixed or % width; else scroll*/
+  overflow-x: hidden;
+  border: 1px solid black; /*border around table body*/
+}
+.scrollingtable > div > div:after {background: white;} /*match page background color*/
+.scrollingtable > div > div > table {
+  width: 100%;
+  border-spacing: 0;
+  margin-top: -20px; /*inverse of column header height*/
+  /*margin-right: 17px;*/ /*uncomment if using % width*/
+}
+.scrollingtable > div > div > table > caption {
+  position: absolute;
+  top: -20px; /*inverse of caption height*/
+  margin-top: -1px; /*inverse of border-width*/
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+}
+.scrollingtable > div > div > table > * > tr > * {padding: 0;}
+.scrollingtable > div > div > table > thead {
+  vertical-align: bottom;
+  white-space: nowrap;
+  text-align: center;
+}
+.scrollingtable > div > div > table > thead > tr > * > div {
+  display: inline-block;
+  padding: 0 6px 0 6px; /*header cell padding*/
+}
+.scrollingtable > div > div > table > thead > tr > :first-child:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px; /*match column header height*/
+  border-left: 1px solid black; /*leftmost header border*/
+}
+.scrollingtable > div > div > table > thead > tr > * > div[label]:before,
+.scrollingtable > div > div > table > thead > tr > * > div > div:first-child,
+.scrollingtable > div > div > table > thead > tr > * + :before {
+  position: absolute;
+  top: 0;
+  white-space: pre-wrap;
+  color: white; /*header row font color*/
+}
+.scrollingtable > div > div > table > thead > tr > * > div[label]:before,
+.scrollingtable > div > div > table > thead > tr > * > div[label]:after {content: attr(label);}
+.scrollingtable > div > div > table > thead > tr > * + :before {
+  content: "";
+  display: block;
+  min-height: 20px; /*match column header height*/
+  padding-top: 1px;
+  border-left: 1px solid black; /*borders between header cells*/
+}
+.scrollingtable .scrollbarhead {float: right;}
+.scrollingtable .scrollbarhead:before {
+  position: absolute;
+  width: 100px;
+  top: -1px; /*inverse border-width*/
+  background: white; /*match page background color*/
+}
+.scrollingtable > div > div > table > tbody > tr:after {
+  content: "";
+  display: table-cell;
+  position: relative;
+  padding: 0;
+  border-top: 1px solid black;
+  top: -1px; /*inverse of border width*/
+}
+.scrollingtable > div > div > table > tbody {vertical-align: top;}
+.scrollingtable > div > div > table > tbody > tr {background: white;}
+.scrollingtable > div > div > table > tbody > tr > * {
+  border-bottom: 1px solid black;
+  padding: 0 6px 0 6px;
+  height: 20px; /*match column header height*/
+}
+.scrollingtable > div > div > table > tbody:last-of-type > tr:last-child > * {border-bottom: none;}
+.scrollingtable > div > div > table > tbody > tr:nth-child(even) {background: gainsboro;} /*alternate row color*/
+.scrollingtable > div > div > table > tbody > tr > * + * {border-left: 1px solid black;} /*borders between body cells*/
