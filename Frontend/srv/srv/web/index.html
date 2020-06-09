@@ -230,12 +230,6 @@
 		// ob das Script auch ganz abgearbeitet wurde.
 			
 		
-		//********************************************************************************************************
-				
-		var cloth = "";			
-		var clothes = [];		// Internal array of clothes
-		
-		
 		//***********************************************************************************************
 		// Absicherung der Verbindung mittels Ping-Pong-Verfahren: 
 		//    https://stackoverflow.com/questions/26971026/handling-connection-loss-with-websockets
@@ -385,6 +379,9 @@
 			//------------------------------------------------------------------------------
 			// Process JSON data coming from server and fill table 'InWardrobe'
 			//------------------------------------------------------------------------------
+			var cloth = "";			
+			var clothes = [];		// Internal array of clothes
+		
 			receivedData = JSON.parse(parJSonData);
 			
 			numObjects = receivedData.length;
@@ -395,52 +392,46 @@
 			clothes = [];
 			
 			i = 1;
+			var buildStringIN="";
+			var buildStringOUT="";
+			
 			receivedData.forEach(function(tmpObject){
+				tmpID = "delIN_"+tmpObject.id;
 				
 				// alert(i + "  tmpObject: " + tmpObject.id);
-				if (tmpObject.status) {
-					cloth = {
-						id: tmpObject.id,
-						description: tmpObject.description,
-						category: tmpObject.category,
-						size: tmpObject.size,
-						color: tmpObject.color,
-						numUsage: tmpObject.numUsage
-					};
+				if (tmpObject.status) {				
 					
-					clothes[i] = cloth;
-					i = i + 1;
+					buildStringIN = buildStringIN +
+						"<tr>"+
+						"<td>"+tmpObject.id+"</td>"+
+						"<td>"+tmpObject.description+"</td>"+
+						"<td>"+tmpObject.category+"</td>"+
+						"<td>"+tmpObject.size+"</td>"+
+						"<td>"+tmpObject.color+"</td>"+
+						"<td>"+tmpObject.numUsage+"</td>"+					
+						"<td><button type=\"button\" id=\""+tmpID+"\">delete</button></td>"+
+						"</tr>"
+					
+					
+				} else {
+			
+					buildStringOUT = buildStringOUT +
+						"<tr>"+
+						"<td>"+tmpObject.id+"</td>"+
+						"<td>"+tmpObject.description+"</td>"+
+						"<td>"+tmpObject.category+"</td>"+
+						"<td>"+tmpObject.size+"</td>"+
+						"<td>"+tmpObject.color+"</td>"+
+						"<td>"+tmpObject.numUsage+"</td>"+					
+						"<td><button type=\"button\" id=\""+tmpID+"\">delete</button></td>"+
+						"</tr>"	
+				
 				}
 				
 			})
-		
 
-			// Build InWardrobe table
-			var buildString="";
-			for (i = 1; i < clothes.length; i++) { 	
-				tmpCloth = clothes[i]; 
-				
-				// $("#dataLabel").text("cloth id = "+tmpCloth.id);
-				
-				tmpID = "delIN_"+tmpCloth.id;
-				
-				buildString = buildString +
-						"<tr>"+
-						"<td>"+tmpCloth.id+"</td>"+
-						"<td>"+tmpCloth.description+"</td>"+
-						"<td>"+tmpCloth.category+"</td>"+
-						"<td>"+tmpCloth.size+"</td>"+
-						"<td>"+tmpCloth.color+"</td>"+
-						"<td>"+tmpCloth.numUsage+"</td>"+					
-						"<td><button type=\"button\" id=\""+tmpID+"\">delete</button></td>"+
-						"</tr>"
-				
-				
-				// alert(tmpVar.id);
-		
-			
-			}
-			$("#tableIN").html(buildString);  
+			$("#tableIN").html(buildStringIN);  
+			// $("#tableOUT").html(buildStringOUT);
 			
 
 			// alert("Test4");
