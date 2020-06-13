@@ -307,6 +307,10 @@
 						
 						refreshInWardrobeGet(json.data);
 						
+					} else if (json.command === 'ok') {
+						
+						// do nothing
+						
 					}
 					
 					
@@ -388,8 +392,8 @@
 			
 			// alert("numObjects: " + numObjects);
 								
-			cloth = "";
-			clothes = [];
+			// cloth = "";
+			// clothes = [];
 			
 			i = 1;
 			var buildStringIN="";
@@ -409,8 +413,9 @@
 						"<td>"+tmpObject.size+"</td>"+
 						"<td>"+tmpObject.color+"</td>"+
 						"<td>"+tmpObject.numUsage+"</td>"+					
-						"<td><button type=\"button\" id=\""+tmpID+"\">delete</button></td>"+
+						"<td><button type=\"button\" onClick=\"doDeleteSend('"+tmpObject.id+"');\" id=\""+tmpID+"\">delete</button></td>"+
 						"</tr>"
+						
 					
 					
 				} else {
@@ -423,19 +428,33 @@
 						"<td>"+tmpObject.size+"</td>"+
 						"<td>"+tmpObject.color+"</td>"+
 						"<td>"+tmpObject.numUsage+"</td>"+					
-						"<td><button type=\"button\" id=\""+tmpID+"\">delete</button></td>"+
+						"<td><button type=\"button\" onClick=\"doDeleteSend('"+tmpObject.id+"');\" id=\""+tmpID+"\">delete</button></td>"+
 						"</tr>"	
 				
 				}
 				
 			})
-
+			
 			$("#tableIN").html(buildStringIN);  
+			
+			
 			// $("#tableOUT").html(buildStringOUT);
 			
 
 			// alert("Test4");
 		
+		}
+		
+		function doDeleteSend(artNr) {
+			//------------------------------------------------------------------------------
+			// Delete an article in database
+			//------------------------------------------------------------------------------
+			var commandClnt = JSON.stringify({ command: 'deleteInWardrobe', data: artNr} ); 
+			ws.send(commandClnt);
+				
+			console.log('Sende: ', commandClnt);
+
+
 		}
 	
 	
