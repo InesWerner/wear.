@@ -78,8 +78,139 @@ wss.on('connection', function(ws) {
 				// Get data from database and prepare for transmitting 
 				// to client via  websocket connection
 				//------------------------------------------------------------------------------
+				doRefreshFromDB();
+
+			} else if (json.command === 'getOutWardrobe') {
+				//------------------------------------------------------------------------------
+				// Get data from database and prepare for transmitting 
+				// to client via  websocket connection
+				//------------------------------------------------------------------------------
 				
 				doRefreshFromDB();
+
+			} else if (json.command === 'createItem') {
+				//------------------------------------------------------------------------------
+				// SQL Statement to save data in database
+				//refresh to show the new item in the InWardrobe table
+				//------------------------------------------------------------------------------
+				
+				buildJSonx = JSON.stringify({  
+					description: buildJSon2.description, 
+					category: buildJSon2.category, 
+					size: buildJSon.size, 
+					color: buildJSon2.color, 	
+					numUsage: buildJSon2.numUsage} );
+
+				//SQL statement to save the new item in our database
+
+				//refresh the table
+
+
+				//------------------------------------------------------------------------------
+				// Get data from database and prepare for transmitting 
+				// to client via  websocket connection
+				// add new item
+				//------------------------------------------------------------------------------
+				
+				// Gute Data Frame Implementierungen in JavaScript gibt es nicht
+				//    siehe https://www.man.com/maninstitute/short-review-of-dataframes-in-javascript
+
+				var cloth = "";
+				var clothes = [];
+
+				// Dummy data to simulate wardrobe data from database
+				i = 1;
+				// cloth = {id:"John", description:"Doe", category:50};
+				cloth = {
+					id: "ArtNr1",
+					description: "Doe",
+					category: 50,
+					size: "L",
+					color: "red",
+					status: true,
+					numUsage: 20
+				};
+				clothes[i] = cloth;
+				
+				i = i+1;
+				cloth = {
+					id: "ArtNr3",
+					description: "Test",
+					category: 10,
+					size: "M",
+					color: "green",
+					status: true,
+					numUsage: 20
+				};
+				clothes[i] = cloth;
+
+				alert("Test");
+				
+				i = i+1;
+				cloth = {
+					id: "ArtNr4",
+					description: "asdgjhgas dhjasdhjgasgdhjasdhj gasgjhjgahjdg",
+					category: 10,
+					size: "S",
+					color: "blue",
+					status: false,
+					numUsage: 30
+				};
+				clothes[i] = cloth;
+				
+				i = i+1;
+				cloth = {
+					id: "ArtNr7",
+					description: "asdasjd asdghjags dgasdgjhags dhjgasjdg jhasdhj gadg jhdh gasgdjhasd",
+					category: 10,
+					size: "S",
+					color: "green",
+					status: false,
+					numUsage: 40
+				};
+				clothes[i] = cloth;
+
+				alert("Item: ");
+
+
+				i = i+1;
+				cloth = {
+					id: "Art10" ,
+					description: buildJSonx.description,
+					category: buildJSonx.category,
+					size: buildJSonx.size,
+					color: buildJSonx.color,
+					status: true ,
+					numUsage: buildJSonx.numUsage 
+				};
+				clothes[i] = cloth;
+
+
+				var buildJSon="";
+				for (i = 1; i < clothes.length; i++) { 	
+					tmpCloth = clothes[i]; 
+								
+					buildJSon = buildJSon + JSON.stringify({ id: tmpCloth.id, 
+													description: tmpCloth.description, 
+													category: tmpCloth.category, 
+													size: tmpCloth.size, 
+													color: tmpCloth.color, 	
+													status: tmpCloth.status, 
+													numUsage: tmpCloth.numUsage} );
+											
+					if (i < (clothes.length-1)) {
+						buildJSon = buildJSon + ",";
+					}
+					
+				}		
+				buildJSon = "[" + buildJSon + "]";
+
+				messageBack = JSON.stringify({ command: 'dataInWardrobe', data: buildJSon });   
+				
+				ws.send(messageBack);
+			
+				
+				
 				
 				
 			} else if (json.command === 'deleteInWardrobe') {
@@ -174,7 +305,7 @@ wss.on('connection', function(ws) {
 			category: 10,
 			size: "S",
 			color: "green",
-			status: true,
+			status: false,
 			numUsage: 40
 		};
 		clothes[i] = cloth;

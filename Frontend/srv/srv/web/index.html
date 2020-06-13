@@ -35,7 +35,7 @@
       <div id="it6fxl">wear.</div>
       <img id="i4eku4" src="http://192.168.2.112:4000/img/banner1.png"/>
       <div data-tabs="1" id="ie5a7">
-         <nav data-tab-container="1" id="inarj" class="tab-container"><a href="#tab1" data-tab="1" id="isrwl" class="tab">overview</a><a href="#tab2" data-tab="1" id="i4hjn" class="tab">changes</a><a href="#tab3" data-tab="1" id="i6rsr" class="tab">creation</a></nav>
+         <nav data-tab-container="1" id="inarj" class="tab-container"><a href="#tab1" data-tab="1" id="isrwl" class="tab">overview</a><a href="#tab2" data-tab="1" id="i4hjn" class="tab">creation</a><a href="#tab3" data-tab="1" id="i6rsr" class="tab">changes</a></nav>
          <div data-gjs="navbar" id="ifbnti" class="navbar"></div>
          <div id="tab1" data-tab-content="1" class="tab-content">
             <div id="i1xro">
@@ -78,6 +78,36 @@
 					  </div>
 					</div>
 
+					<div class="scrollingtable">
+						<div>
+						  <div>
+							<table>
+							  <caption>What's not in my wardrobe?</caption>
+							  <thead>
+								<tr>
+								  <th><div label="Id"></div></th>
+								  <th><div label="description"></div></th>
+								  <th><div label="category"></div></th>
+								  <th><div label="size"></div></th>
+								  <th><div label="color"></div></th>
+								  <th><div label="number of usage"></div></th>
+								  <th><div label="action"></div></th>
+								  <th class="scrollbarhead"/> <!--ALWAYS ADD THIS EXTRA CELL AT END OF HEADER ROW-->
+								</tr>
+							  </thead>
+							  <tbody id="tableOUT">
+								
+								<!--
+								<tr><td>1 Lorem ipsum</td><td>2 Dolor</td><td>3 Sit</td><td>4Amet consectetur</td><td>5Amet consectetur</td><td>6Amet consectetur</td><td><button type="button" id="delxyz">delete</button></td></tr>
+								-->
+								
+							  </tbody>
+							</table>
+						  </div>
+						  <!--<td><button type="button" id="fresh2">Refresh</button></td>-->
+						</div>
+					  </div>
+
 
                </div>
             </div>
@@ -85,49 +115,9 @@
                <div id="cell9" class="cell">
                </div>
             </div>
-            <div id="idaszc">What&#039;s not in my wardrobe?
-               <br/>
-            </div>
+            
 			
-            <div id="box2" class="row">
-               <div class="cell">
-                  <div id="box3">
-                     <table id="ikwlby" class="tg">
-                        <tbody>
-                           <tr>
-                              <th id="i32wj4" class="tg-031e">Id
-                              </th>
-                              <th id="iujezq" class="tg-031e">description
-                              </th>
-                              <th id="in5har" class="tg-031e">category
-                              </th>
-                              <th id="ik3upl" class="tg-031e">size
-                              </th>
-                              <th id="iu2bbg" class="tg-031e">color
-                              </th>
-                              <th id="ik9vw6" class="tg-031e">number of usage
-                              </th>
-                           </tr>
-                           <tr>
-                              <td class="tg-031e">
-                              </td>
-                              <td class="tg-031e">
-                              </td>
-                              <td class="tg-031e">
-                              </td>
-                              <td class="tg-031e">
-                              </td>
-                              <td class="tg-031e">
-                              </td>
-                              <td class="tg-031e">
-                              </td>
-                              <td><button type="button">delete</button></td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
-               </div>
-            </div>
+            
             <div class="row">
                <div class="cell">
                </div>
@@ -264,6 +254,10 @@
 				// Call functions to initialize
 				//------------------------------------------------------------------------------
 				refreshInWardrobeSend();
+				refreshOutWardrobeSend();
+				createClothesSend();
+				
+			
 				
 				
 			};
@@ -306,6 +300,15 @@
 						//------------------------------------------------------------------------------
 						
 						refreshInWardrobeGet(json.data);
+					
+					} else if (json.command === 'dataOutWardrobe') {
+						//------------------------------------------------------------------------------
+						// Get wardrobe data from websocket server
+						//------------------------------------------------------------------------------
+						
+						refreshOutWardrobeGet(json.data);
+
+
 						
 					} else if (json.command === 'ok') {
 						
@@ -338,6 +341,21 @@
 				refreshInWardrobeSend();
 	 
 			});
+
+			$('#fresh2').on('click', function() {
+			
+			refreshOutWardrobeSend();
+ 
+			});
+
+			$('#icj19i').on('click', function() {
+
+				createClothesSend();
+	 
+			});
+			
+
+			
 			
 		
 			$('#myTempButton').on('click', function() {
@@ -350,7 +368,6 @@
 			});
 			
 			$('#mydataButton').on('click', function() {
-			
 				var clothNr = "213-34";
 				var clothName = "Rock";
 				var clothColor = "red";
@@ -375,6 +392,50 @@
 			ws.send(commandClnt);
 				
 			console.log('Sende: ', commandClnt);
+				
+		}
+
+		function refreshOutWardrobeSend() {
+			//------------------------------------------------------------------------------
+			// Send command to server and want to get data for table 'OutWardrobe'
+			//------------------------------------------------------------------------------
+			var commandClnt = JSON.stringify({ command: 'getOutWardrobe', data: ''} ); 
+			ws.send(commandClnt);
+				
+			console.log('Sende: ', commandClnt);
+				
+		}
+	
+		function createClothesSend() {
+			//------------------------------------------------------------------------------
+			// Send command to server and save data in database'
+			//------------------------------------------------------------------------------
+
+			var descbox = document.getElementById("isdvuq").value;
+			var catbox = document.getElementById("iwm4f").value;
+			var sizebox = document.getElementById("i1dp2").value;
+			var colorbox = document.getElementById("i9nqx").value;
+			var numofusagebox = document.getElementById("ifp6t").value;
+		
+			var buildJSon2="";
+
+			buildJSon2 = JSON.stringify({ description: descbox, 
+											 category: catbox, 
+											 size:sizebox, 
+											 color: colorbox, 
+											 numberofusage:numofusagebox} );
+			//buildJSon2 = "[" + buildJSon2 + "]";
+			
+			
+		
+			alert("clothes: " + buildJSon2);
+
+			var commandClnt = JSON.stringify({ command: 'createItem', data: buildJSon2 } ); 
+			
+			ws.send(commandClnt);
+	
+			console.log('Sende: ', commandClnt);
+			alert("clothes: " + buildJSon2);
 				
 		}
 
@@ -438,7 +499,7 @@
 			$("#tableIN").html(buildStringIN);  
 			
 			
-			// $("#tableOUT").html(buildStringOUT);
+			$("#tableOUT").html(buildStringOUT);
 			
 
 			// alert("Test4");
