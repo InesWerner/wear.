@@ -1,3 +1,20 @@
+//____________________________________________________
+//Database Connection
+//____________________________________________________
+
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+ host: "localhost",
+ user: "root",
+ password: "Sunny!1996"
+});
+
+con.connect(function(err) {
+ if (err) throw err;
+
+ console.log("Connected!");
+}); 
 
 //----------------------------------------------------
 // Ports
@@ -39,6 +56,7 @@ wss.on('connection', function(ws) {
 				messageBack = JSON.stringify({ command: 'message', data: 'Hello Client'} );
 				ws.send(messageBack);
 				
+				console.log('send:', messageBack);
 				
 			} else if (json.command === 'command') {
 				// handle incoming command
@@ -53,6 +71,8 @@ wss.on('connection', function(ws) {
 				}
 				
 				ws.send(messageBack);
+				
+				console.log('send:', messageBack);
 				
 			} else if (json.command === 'updateCloth') {
 				// handle incoming updateCloth command
@@ -73,6 +93,8 @@ wss.on('connection', function(ws) {
 				
 				ws.send(messageBack);
 				
+				console.log('send:', messageBack);
+				
 			} else if (json.command === 'getInWardrobe') {
 				//------------------------------------------------------------------------------
 				// Get data from database and prepare for transmitting 
@@ -80,137 +102,15 @@ wss.on('connection', function(ws) {
 				//------------------------------------------------------------------------------
 				doRefreshFromDB();
 
-			} else if (json.command === 'getOutWardrobe') {
-				//------------------------------------------------------------------------------
-				// Get data from database and prepare for transmitting 
-				// to client via  websocket connection
-				//------------------------------------------------------------------------------
-				
-				doRefreshFromDB();
 
 			} else if (json.command === 'createItem') {
 				//------------------------------------------------------------------------------
 				// SQL Statement to save data in database
-				//refresh to show the new item in the InWardrobe table
+				// refresh to show the new item in the InWardrobe table
 				//------------------------------------------------------------------------------
-				
-				buildJSonx = JSON.stringify({  
-					description: buildJSon2.description, 
-					category: buildJSon2.category, 
-					size: buildJSon.size, 
-					color: buildJSon2.color, 	
-					numUsage: buildJSon2.numUsage} );
 
-				//SQL statement to save the new item in our database
-
-				//refresh the table
-
-
-				//------------------------------------------------------------------------------
-				// Get data from database and prepare for transmitting 
-				// to client via  websocket connection
-				// add new item
-				//------------------------------------------------------------------------------
-				
-				// Gute Data Frame Implementierungen in JavaScript gibt es nicht
-				//    siehe https://www.man.com/maninstitute/short-review-of-dataframes-in-javascript
-
-				var cloth = "";
-				var clothes = [];
-
-				// Dummy data to simulate wardrobe data from database
-				i = 1;
-				// cloth = {id:"John", description:"Doe", category:50};
-				cloth = {
-					id: "ArtNr1",
-					description: "Doe",
-					category: 50,
-					size: "L",
-					color: "red",
-					status: true,
-					numUsage: 20
-				};
-				clothes[i] = cloth;
-				
-				i = i+1;
-				cloth = {
-					id: "ArtNr3",
-					description: "Test",
-					category: 10,
-					size: "M",
-					color: "green",
-					status: true,
-					numUsage: 20
-				};
-				clothes[i] = cloth;
-
-				alert("Test");
-				
-				i = i+1;
-				cloth = {
-					id: "ArtNr4",
-					description: "asdgjhgas dhjasdhjgasgdhjasdhj gasgjhjgahjdg",
-					category: 10,
-					size: "S",
-					color: "blue",
-					status: false,
-					numUsage: 30
-				};
-				clothes[i] = cloth;
-				
-				i = i+1;
-				cloth = {
-					id: "ArtNr7",
-					description: "asdasjd asdghjags dgasdgjhags dhjgasjdg jhasdhj gadg jhdh gasgdjhasd",
-					category: 10,
-					size: "S",
-					color: "green",
-					status: false,
-					numUsage: 40
-				};
-				clothes[i] = cloth;
-
-				alert("Item: ");
-
-
-				i = i+1;
-				cloth = {
-					id: "Art10" ,
-					description: buildJSonx.description,
-					category: buildJSonx.category,
-					size: buildJSonx.size,
-					color: buildJSonx.color,
-					status: true ,
-					numUsage: buildJSonx.numUsage 
-				};
-				clothes[i] = cloth;
-
-
-				var buildJSon="";
-				for (i = 1; i < clothes.length; i++) { 	
-					tmpCloth = clothes[i]; 
-								
-					buildJSon = buildJSon + JSON.stringify({ id: tmpCloth.id, 
-													description: tmpCloth.description, 
-													category: tmpCloth.category, 
-													size: tmpCloth.size, 
-													color: tmpCloth.color, 	
-													status: tmpCloth.status, 
-													numUsage: tmpCloth.numUsage} );
-											
-					if (i < (clothes.length-1)) {
-						buildJSon = buildJSon + ",";
-					}
-					
-				}		
-				buildJSon = "[" + buildJSon + "]";
-
-				messageBack = JSON.stringify({ command: 'dataInWardrobe', data: buildJSon });   
-				
-				ws.send(messageBack);
-			
-				
-				
+				var clothData = JSON.parse(json.data);
+				doInsertIntoDB(clothData);
 				
 				
 			} else if (json.command === 'deleteInWardrobe') {
@@ -218,23 +118,15 @@ wss.on('connection', function(ws) {
 				// Delete cloth data from database 
 				//------------------------------------------------------------------------------		
 				artNr = json.data;
-				
-				//********* Delete here Article in Database ***********
-				
-				
-				//*****************************************************
-				
-				doRefreshFromDB();
-				
-				messageBack = "Delete article: "+artNr;
+
+				doDeleteFromDB(artNr);
 
 			}
 			
-			console.log('send:', messageBack);
-			
 			
 		} catch (e) {
-			console.log('This is not a valid JSON command: ', message);
+		
+			console.log('This is not a valid JSON command: ', message, e);
 			
 			// Hier noch besseres Error-Handling	
 			
@@ -248,7 +140,50 @@ wss.on('connection', function(ws) {
 	});
 	
 	
+	function doDeleteFromDB(ArtNr) {
+		//**** Keep in mind that the database commands are asynchronous - see https://stackoverflow.com/questions/15635791/nodejs-mysql-connection-query-return-value-to-function-call
+		//------------------------------------------------------------------------------
+		// Delete from database
+		//------------------------------------------------------------------------------
+
+		var sql = "DELETE FROM IoT_Project_Wardrobe.Item WHERE itemId="+ArtNr;
+		
+		con.query(sql, function (err, result) {			
+			if (err) throw err;
+			
+			doRefreshFromDB();
+			
+			messageBack = "Delete article: "+artNr;
+				
+			console.log('send:', messageBack);
+			
+		});
+		
+	}
+	
+	
+	function doInsertIntoDB(clothData) {
+		//**** Keep in mind that the database commands are asynchronous - see https://stackoverflow.com/questions/15635791/nodejs-mysql-connection-query-return-value-to-function-call
+		//------------------------------------------------------------------------------
+		// Insert data into database
+		//------------------------------------------------------------------------------
+
+		// Noch nicht vollständig!!!!!
+		var sql = "INSERT INTO IoT_Project_Wardrobe.Item (description, category, size, color) VALUES ('"+clothData.description+"','"+clothData.category+"','"+clothData.size+"','"+clothData.color+"')";
+		
+		con.query(sql, function (err, result) {			
+			if (err) throw err;
+			
+			doRefreshFromDB();
+			
+			console.log("Record inserted");
+			
+		});
+		
+	}
+	
 	function doRefreshFromDB() {
+		//**** Keep in mind that the database commands are asynchronous - see https://stackoverflow.com/questions/15635791/nodejs-mysql-connection-query-return-value-to-function-call
 		//------------------------------------------------------------------------------
 		// Get data from database and prepare for transmitting 
 		// to client via  websocket connection
@@ -259,7 +194,44 @@ wss.on('connection', function(ws) {
 
 		var cloth = "";
 		var clothes = [];
+		
+		var sql = 'SELECT * FROM IoT_Project_Wardrobe.Item ';
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			
+			var buildJSon="";			
+			result.forEach(function(tmpCloth){
+						
+				tmpJSon =   JSON.stringify({ id: tmpCloth.itemId, 
+											 description: tmpCloth.description, 
+											 category: tmpCloth.category, 
+											 size: tmpCloth.size, 
+											 color: tmpCloth.color, 	
+											 status: tmpCloth.status, 
+											 numUsage: tmpCloth.numberOfUsage} );
+				
+				// Noch nicht verwendet: `name` varchar(45) DEFAULT NULL,
 
+				if (buildJSon.length > 0) {
+					buildJSon = buildJSon + "," + tmpJSon;
+				} else {
+					buildJSon = tmpJSon;
+				}
+				
+			});
+			buildJSon = "[" + buildJSon + "]";
+			messageBack = JSON.stringify({ command: 'dataInWardrobe', data: buildJSon });   
+		
+			ws.send(messageBack);
+
+			console.log('send:', messageBack);
+		});
+
+	}
+	
+	
+	
+	function Dummy() {
 		// Dummy data to simulate wardrobe data from database
 		i = 1;
 		// cloth = {id:"John", description:"Doe", category:50};
@@ -272,7 +244,7 @@ wss.on('connection', function(ws) {
 			status: true,
 			numUsage: 20
 		};
-		clothes[i] = cloth;
+		// clothes[i] = cloth;
 		
 		i = i+1;
 		cloth = {
@@ -284,7 +256,7 @@ wss.on('connection', function(ws) {
 			status: true,
 			numUsage: 20
 		};
-		clothes[i] = cloth;
+		// clothes[i] = cloth;
 		
 		i = i+1;
 		cloth = {
@@ -296,7 +268,7 @@ wss.on('connection', function(ws) {
 			status: false,
 			numUsage: 30
 		};
-		clothes[i] = cloth;
+		// clothes[i] = cloth;
 		
 		i = i+1;
 		cloth = {
@@ -308,37 +280,10 @@ wss.on('connection', function(ws) {
 			status: false,
 			numUsage: 40
 		};
-		clothes[i] = cloth;
-
-
-		var buildJSon="";
-		for (i = 1; i < clothes.length; i++) { 	
-			tmpCloth = clothes[i]; 
-						
-			buildJSon = buildJSon + JSON.stringify({ id: tmpCloth.id, 
-											 description: tmpCloth.description, 
-											 category: tmpCloth.category, 
-											 size: tmpCloth.size, 
-											 color: tmpCloth.color, 	
-											 status: tmpCloth.status, 
-											 numUsage: tmpCloth.numUsage} );
-									 
-			if (i < (clothes.length-1)) {
-				buildJSon = buildJSon + ",";
-			}
-			
-		}		
-		buildJSon = "[" + buildJSon + "]";
-
-		messageBack = JSON.stringify({ command: 'dataInWardrobe', data: buildJSon });   
-		
-		ws.send(messageBack);
+		// clothes[i] = cloth;
 	}
 	
 });
-
-
-// }));
 
 
 //----------------------------------------------------

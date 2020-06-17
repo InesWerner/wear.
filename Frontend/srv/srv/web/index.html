@@ -254,10 +254,6 @@
 				// Call functions to initialize
 				//------------------------------------------------------------------------------
 				refreshInWardrobeSend();
-				refreshOutWardrobeSend();
-				createClothesSend();
-				
-			
 				
 				
 			};
@@ -344,7 +340,7 @@
 
 			$('#fresh2').on('click', function() {
 			
-			refreshOutWardrobeSend();
+				refreshInWardrobeSend();
  
 			});
 
@@ -353,9 +349,7 @@
 				createClothesSend();
 	 
 			});
-			
 
-			
 			
 		
 			$('#myTempButton').on('click', function() {
@@ -395,16 +389,6 @@
 				
 		}
 
-		function refreshOutWardrobeSend() {
-			//------------------------------------------------------------------------------
-			// Send command to server and want to get data for table 'OutWardrobe'
-			//------------------------------------------------------------------------------
-			var commandClnt = JSON.stringify({ command: 'getOutWardrobe', data: ''} ); 
-			ws.send(commandClnt);
-				
-			console.log('Sende: ', commandClnt);
-				
-		}
 	
 		function createClothesSend() {
 			//------------------------------------------------------------------------------
@@ -426,16 +410,14 @@
 											 numberofusage:numofusagebox} );
 			//buildJSon2 = "[" + buildJSon2 + "]";
 			
-			
-		
-			alert("clothes: " + buildJSon2);
+			// alert("clothes: " + buildJSon2);
 
 			var commandClnt = JSON.stringify({ command: 'createItem', data: buildJSon2 } ); 
 			
 			ws.send(commandClnt);
 	
 			console.log('Sende: ', commandClnt);
-			alert("clothes: " + buildJSon2);
+			// alert("clothes: " + buildJSon2);
 				
 		}
 
@@ -497,11 +479,8 @@
 			})
 			
 			$("#tableIN").html(buildStringIN);  
-			
-			
 			$("#tableOUT").html(buildStringOUT);
 			
-
 			// alert("Test4");
 		
 		}
