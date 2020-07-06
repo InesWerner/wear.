@@ -5,7 +5,8 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
- host: "localhost",
+ host: "192.168.2.112",    // BEACHTE: "#mySQL-Einrichtung.txt"
+ port: 3306,
  user: "root",
  password: "Sunny!1996"
 });
@@ -101,16 +102,41 @@ wss.on('connection', function(ws) {
 				// to client via  websocket connection
 				//------------------------------------------------------------------------------
 				doRefreshFromDB();
+				
+			} else if (json.command === 'getClothData') {
+				//------------------------------------------------------------------------------
+				// Get data from database and prepare for transmitting 
+				// to client via  websocket connection for one cloth
+				//------------------------------------------------------------------------------
+				doGetArtFromDB(json.data);
+				
+			} else if (json.command === 'getRFID') {
+				//------------------------------------------------------------------------------
+				// Get data from database and prepare for transmitting 
+				// to client via  websocket connection
+				//------------------------------------------------------------------------------
+				doRefreshRFIDFromDB();
+
 
 
 			} else if (json.command === 'createItem') {
 				//------------------------------------------------------------------------------
-				// SQL Statement to save data in database
+				// SQL Statement to save new data in database
 				// refresh to show the new item in the InWardrobe table
 				//------------------------------------------------------------------------------
 
 				var clothData = JSON.parse(json.data);
 				doInsertIntoDB(clothData);
+				
+				
+			} else if (json.command === 'modifyItem') {
+				//------------------------------------------------------------------------------
+				// SQL Statement to save modified data in database
+				// refresh to show the modified item in the InWardrobe table
+				//------------------------------------------------------------------------------
+
+				var clothData = JSON.parse(json.data);
+				doModifyIntoDB(clothData);
 				
 				
 			} else if (json.command === 'deleteInWardrobe') {
@@ -161,15 +187,39 @@ wss.on('connection', function(ws) {
 		
 	}
 	
+
+	function doModifyIntoDB(clothData) {
+		//**** Keep in mind that the database commands are asynchronous - see https://stackoverflow.com/questions/15635791/nodejs-mysql-connection-query-return-value-to-function-call
+		//------------------------------------------------------------------------------
+		// Change data into database
+		//------------------------------------------------------------------------------
+		if (clothData.numberofusage == "")  clothData.numberofusage = 0;
+		
+		var sql = "UPDATE IoT_Project_Wardrobe.Item SET description='"+clothData.description+"', category='"+clothData.category+"',size='"+clothData.size+"',color='"+clothData.color+"',numberofusage="+clothData.numberofusage+" WHERE itemId="+clothData.artNr;
+		
+		// console.log(sql);
+		
+		console.log(clothData);
+		
+		con.query(sql, function (err, result) {			
+			if (err) throw err;
+			
+			doRefreshFromDB();
+			
+			console.log("Record modified");
+			
+		});
+		
+	}
 	
 	function doInsertIntoDB(clothData) {
 		//**** Keep in mind that the database commands are asynchronous - see https://stackoverflow.com/questions/15635791/nodejs-mysql-connection-query-return-value-to-function-call
 		//------------------------------------------------------------------------------
 		// Insert data into database
 		//------------------------------------------------------------------------------
-
-		// Noch nicht vollständig!!!!!
-		var sql = "INSERT INTO IoT_Project_Wardrobe.Item (description, category, size, color) VALUES ('"+clothData.description+"','"+clothData.category+"','"+clothData.size+"','"+clothData.color+"')";
+		if (clothData.numberofusage == "")  clothData.numberofusage = 0;
+		
+		var sql = "INSERT INTO IoT_Project_Wardrobe.Item (description, category, size, color, numberofusage, tagID) VALUES ('"+clothData.description+"','"+clothData.category+"','"+clothData.size+"','"+clothData.color+"','"+clothData.numberofusage+"','"+clothData.tagID+"')";
 		
 		con.query(sql, function (err, result) {			
 			if (err) throw err;
@@ -180,6 +230,56 @@ wss.on('connection', function(ws) {
 			
 		});
 		
+	}
+	
+	
+	
+	function doGetArtFromDB(artNr) {
+		//**** Keep in mind that the database commands are asynchronous - see https://stackoverflow.com/questions/15635791/nodejs-mysql-connection-query-return-value-to-function-call
+		//------------------------------------------------------------------------------
+		// Get data from database and prepare for transmitting 
+		// to client via  websocket connection for one cloth
+		//------------------------------------------------------------------------------
+		
+		// Gute Data Frame Implementierungen in JavaScript gibt es nicht
+		//    siehe https://www.man.com/maninstitute/short-review-of-dataframes-in-javascript
+
+		var cloth = "";
+		var clothes = [];
+		
+		var sql = 'SELECT * FROM IoT_Project_Wardrobe.Item where IoT_Project_Wardrobe.Item.itemId = '+artNr;	
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			
+			var buildJSon="";			
+			result.forEach(function(tmpCloth){
+						
+				tmpJSon =   JSON.stringify({ id: tmpCloth.itemId, 
+											 description: tmpCloth.description, 
+											 category: tmpCloth.category, 
+											 size: tmpCloth.size, 
+											 color: tmpCloth.color, 	
+											 status: tmpCloth.status, 
+											 tagID: tmpCloth.tagID,
+											 numUsage: tmpCloth.numberOfUsage} );
+				
+				// Noch nicht verwendet: `name` varchar(45) DEFAULT NULL,
+
+				if (buildJSon.length > 0) {
+					buildJSon = buildJSon + "," + tmpJSon;
+				} else {
+					buildJSon = tmpJSon;
+				}
+				
+			});
+			buildJSon = "[" + buildJSon + "]";
+			messageBack = JSON.stringify({ command: 'dataInCloth', data: buildJSon });   
+		
+			ws.send(messageBack);
+
+			console.log('send:', messageBack);
+		});
+
 	}
 	
 	function doRefreshFromDB() {
@@ -221,6 +321,46 @@ wss.on('connection', function(ws) {
 			});
 			buildJSon = "[" + buildJSon + "]";
 			messageBack = JSON.stringify({ command: 'dataInWardrobe', data: buildJSon });   
+		
+			ws.send(messageBack);
+
+			console.log('send:', messageBack);
+		});
+
+	}
+	
+	function doRefreshRFIDFromDB() {
+		//**** Keep in mind that the database commands are asynchronous - see https://stackoverflow.com/questions/15635791/nodejs-mysql-connection-query-return-value-to-function-call
+		//------------------------------------------------------------------------------
+		// Get data from database and prepare for transmitting 
+		// to client via  websocket connection
+		//------------------------------------------------------------------------------
+		
+		// Gute Data Frame Implementierungen in JavaScript gibt es nicht
+		//    siehe https://www.man.com/maninstitute/short-review-of-dataframes-in-javascript
+
+		var cloth = "";
+		var clothes = [];
+		
+		var sql = 'SELECT IoT_Project_Wardrobe.Tag.tagID, IoT_Project_Wardrobe.Tag.tagKey FROM IoT_Project_Wardrobe.Tag WHERE IoT_Project_Wardrobe.Tag.tagID NOT IN ( SELECT IoT_Project_Wardrobe.Item.tagID FROM IoT_Project_Wardrobe.Item )';
+		con.query(sql, function (err, result) {
+			if (err) throw err;
+			
+			var buildJSon="";			
+			result.forEach(function(tmpRFID){
+						
+				tmpJSon =   JSON.stringify({ tagID: tmpRFID.tagID, 
+											 tagKey: tmpRFID.tagKey} );
+
+				if (buildJSon.length > 0) {
+					buildJSon = buildJSon + "," + tmpJSon;
+				} else {
+					buildJSon = tmpJSon;
+				}
+				
+			});
+			buildJSon = "[" + buildJSon + "]";
+			messageBack = JSON.stringify({ command: 'dataRFID', data: buildJSon });   
 		
 			ws.send(messageBack);
 

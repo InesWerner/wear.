@@ -4,6 +4,17 @@
  body {
     margin: 0;
 }
+
+#buttonChange, #buttonCancelChange{
+   display: inline-block;
+   margin-right: 5px;
+}
+
+#buttonNew, #buttonCancelNew{
+   display: inline-block;
+   margin-right: 5px;
+}
+
 .form{
     border-radius:3px;
     padding:10px 15px;
@@ -14,10 +25,39 @@
     margin-bottom:15px;
     padding:7px 10px;
     border-radius:2px;
-    color:#fff;
     background-color:#554c57;
     border:none;
+	
+	background-image:linear-gradient(white,white);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+	
 }
+
+.inputdisable{
+    width:100%;
+    margin-bottom:15px;
+    padding:7px 10px;
+    border-radius:2px;
+    background-color:#ff0000;
+    border:none;
+	
+	background-image:linear-gradient(lightgrey,lightgrey);
+    background-repeat:repeat;
+    background-position:left top;
+    background-attachment:scroll;
+    background-size:auto;
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+	
+}
+
 .select{
     width:100%;
     margin-bottom:15px;
@@ -31,6 +71,10 @@
 .label{
     width:100%;
     display:block;
+
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
 }
 .button{
     width:100%;
@@ -310,6 +354,12 @@ body{
     font-weight:500;
 }
 #iphwp9{
+    font-family:Tahoma, Geneva, sans-serif;
+    color:#474444;
+    font-weight:500;
+}
+
+#iphwp10{
     font-family:Tahoma, Geneva, sans-serif;
     color:#474444;
     font-weight:500;

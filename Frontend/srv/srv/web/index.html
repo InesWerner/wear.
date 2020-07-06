@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -23,10 +24,6 @@
      // einen alert("Test1"); davor und einen danach alert("Test2"); Dann sehe ich
      // ob das Script auch ganz abgearbeitet wurde.
 
-	 // alert("Test1");
-
-	 // alert("Test2");
-
 	
 	</script>
    </head>
@@ -34,18 +31,63 @@
       <div id="it6fxl">wear.</div>
       <img id="i4eku4" src="http://192.168.2.112:4000/img/banner1.png"/>
       <div data-tabs="1" id="ie5a7">
-		 <nav data-tab-container="1" id="inarj" class="tab-container"><a href="#tab1" data-tab="1" id="isrwl" class="tab">overview</a><a href="#tab2" data-tab="1" id="i4hjn" class="tab">creation</a><!--<a href="#tab3" data-tab="1" id="i6rsr" class="tab">changes</a>--></nav>
+         <nav data-tab-container="1" id="inarj" class="tab-container">
+			<a href="#tab1" data-tab="1" id="isrwl" class="tab">overview</a>
+			<a href="#tab2" data-tab="1" id="i4hjn" class="tab">creation</a>
+		 </nav>
          <div data-gjs="navbar" id="ifbnti" class="navbar"></div>
          <div id="tab1" data-tab-content="1" class="tab-content">
-            <div id="i1xro">
+		 
+			<div id="i1xro">
                <div id="iyhld"><br/></div>
                <div><br/></div>
                <!-- <div id="i6awl">What's in my wardrobe?</div>  -->
             </div>
-            <div id="ij4duu"></div>
+			
+			<div id="divmodify" class="row" style="display: none;">
+               <div id="i6upj" class="cell">
+                  <div id="itadau">Please enter the changes of your item and save it!<br/></div>
+				  
+		
+					<form method="get" id="in6kx8" class="form">
+				
+					  <label for="fname" class="label">Id:</label><br>
+					  <input type="text" id="chid" name="chid" class="inputdisable" value="" disabled><br>
+			
+					  <label for="fname" class="label">description:</label><br>
+					  <input type="text" id="chdescription" name="chdescription" class="input" value=""><br>
+					  
+					  <label for="fname" class="label">category:</label><br>
+					  <input type="text" id="chcategory" name="chcategory" class="input" value=""><br>
+					  
+					  <label for="fname" class="label">size:</label><br>
+					  <input type="text" id="chsize" name="chsize" class="input" value=""><br>
+					  
+					  <label for="fname" class="label">color:</label><br>
+					  <input type="text" id="chcolor" name="chcolor" class="input" value=""><br>
+					  
+					  <label for="fname" class="label">numberofusage:</label><br>
+					  <input type="text" id="chnumberofusage" name="chnumberofusage" class="input" value=""><br>
+					  
+					  <div class="row">
+					  <button id="buttonChange" class="button">Save changes</button>
+					  <button id="buttonCancelChange" class="button">Cancel</button>
+					  </div>
+					</form>
+				
+
+				  
+                  <div id="i0to2j" class="row">
+                     <div id="ii44yg" class="cell">
+                     </div>
+                  </div>
+				  
+               </div>
+            </div>
+			
+            <div id="ij4duu"></div>		
             <div id="itld48" class="row">
                <div id="iy5sum" class="cell">
-
 
 					<div class="scrollingtable">
 					  <div>
@@ -114,9 +156,7 @@
                <div id="cell9" class="cell">
                </div>
             </div>
-            
-			
-            
+
             <div class="row">
                <div class="cell">
                </div>
@@ -129,7 +169,7 @@
                </div>
             </div>
 			
-			
+			<!--
 			 <h3>Send:</h3><div id="idSend"><p>NixSend</p></div>
 			 <h3>Receive:</h3><div id="idReceive"><p>NixReceive</p></div>
 			 <BR/>
@@ -144,16 +184,17 @@
 			 <br/>
 			 <br/>
 			   
-			 <!-- 
+			  
 			 <br/>
 			 <input id="temp1" type="text" name="tempName" value="0" />  
-			 -->
+			 
 			 
 			 <br/>      
 			 <input id="myTempButton" type="submit" value="Temperatur holen" />
 			 
 			 <br/>      
 			 <input id="mydataButton" type="submit" value="Daten holen" />
+			 -->
  
  
  
@@ -163,10 +204,38 @@
                <div id="ivovkx" class="cell">
                   <div id="ijiy1q">Please enter the data of your new item and save it!<br/></div>
                   <form method="get" id="i529xl" class="form">
-                     <div class="form-group"><label for="descriptionlabel" id="iphwp9" class="label">description</label><input placeholder="" name="descriptionbox" type="text" id="isdvuq" class="input"/></div>
-                     <div class="form-group"><label for="categorylabel" id="i5wph" class="label">category</label><input type="text" placeholder="" name="categorybox" id="iwm4f" class="input"/></div>
-                     <label for="sizelabel" id="i6yn7" class="label">size</label><input name="sizebox" type="text" id="i1dp2" class="input"/><label for="colorlabel" id="ik772" class="label">color</label><input name="colorbox" type="text" id="i9nqx" class="input"/><label for="numberofusagelabel" id="i6ntm" class="label">number of usage</label><input type="text" name="numberofusagebox" id="ifp6t" class="input"/>
-                     <div class="form-group"><button type="submit" id="icj19i" class="button">save new item</button></div>
+					<div class="form-group">
+						<label for="descriptionlabel" id="iphwp10" class="label">Choose a RFID:</label>
+
+						<select name="RFID" id="RFIDnew">
+  
+						</select> 
+					</div>
+
+                     <div class="form-group">
+					 <label for="descriptionlabel" id="iphwp9" class="label">description</label>
+					 <input placeholder="" name="descriptionbox" type="text" id="isdvuq" class="input"/>
+					 </div>
+					 
+                     <div class="form-group">
+					 <label for="categorylabel" id="i5wph" class="label">category</label>
+					 <input type="text" placeholder="" name="categorybox" id="iwm4f" class="input"/>
+					 </div>
+					 
+                     <label for="sizelabel" id="i6yn7" class="label">size</label>
+					 <input name="sizebox" type="text" id="i1dp2" class="input"/>
+					 
+					 <label for="colorlabel" id="ik772" class="label">color</label>
+					 <input name="colorbox" type="text" id="i9nqx" class="input"/>
+					 
+					 <label for="numberofusagelabel" id="i6ntm" class="label">number of usage</label>
+					 <input type="text" name="numberofusagebox" id="ifp6t" class="input"/>
+					 
+                     <div class="row">
+					 <button id="buttonNew" class="button">Save new item</button>
+					 <button id="buttonCancelNew" class="button">Cancel</button>
+					 </div>
+					 
                   </form>
                   <div class="row">
                      <div class="cell" id="id9nh">
@@ -179,41 +248,68 @@
                   </div>
                </div>
             </div>
-		 </div>
-		 <!--
-         <div id="tab3" data-tab-content="1" class="tab-content">
-            <div id="iub4ok" class="row">
-               <div id="i6upj" class="cell">
-                  <div id="itadau">Please enter the changes of your item and save it!<br/></div>
-                  <form method="get" id="in6kx8" class="form">
-                     <select class="select" id="i7tzay">
-                        <option value="">- Select option -</option>
-                        <option value="1">Option 1</option>
-                     </select>
-                     <div id="i3xhn" class="form-group"><label for="descriptionlabel1" id="iqado" class="label">description</label><input placeholder="" name="descriptionbox1" type="text" id="iqebx" class="input"/></div>
-                     <div id="i9ws4" class="form-group"><label for="categorylabel1" id="ix34k" class="label">category</label><input type="text" placeholder="" name="categorybox1" id="i58h9" class="input"/></div>
-                     <label for="sizelabel1" id="iq16s" class="label">size</label><input name="sizebox1" type="text" id="iz5fk" class="input"/><label for="colorlabel1" id="iknd97" class="label">color</label><input name="colorbox1" type="text" id="it576c" class="input"/><label for="numberofusagelabel1" id="i2we9q" class="label">number of usage</label><input type="text" name="numberofusagebox1" id="iz4ouu" class="input"/>
-                     <div class="form-group"><button type="submit" id="iryx5h" class="button">save changes</button></div>
-                  </form>
-                  <div id="i0to2j" class="row">
-                     <div id="ii44yg" class="cell">
-                     </div>
-                  </div>
-                  <div id="i7d5lr" class="row">
-                     <div class="cell" id="ibhw39">
-                        © 2020, wear.com, made by university of applied science, Stuttgart
-                     </div>
-                  </div>
-               </div>
-            </div>
-		 </div>
-		-->
+         </div>
+		 
       </div>
 	  
 	  <script>
 		 var items = document.querySelectorAll('#ie5a7');
-		 for (var i = 0, len = items.length; i < len; i++) {
-		   (function(){var t,e=this,a="[data-tab]",n=document.body,r=n.matchesSelector||n.webkitMatchesSelector||n.mozMatchesSelector||n.msMatchesSelector,o=function(){var a=e.querySelectorAll("[data-tab-content]")||[];for(t=0;t<a.length;t++)a[t].style.display="none"},i=function(n){var r=e.querySelectorAll(a)||[];for(t=0;t<r.length;t++){var i=r[t],s=i.className.replace("tab-active","").trim();i.className=s}o(),n.className+=" tab-active";var l=n.getAttribute("href"),c=e.querySelector(l);c&&(c.style.display="")},s=e.querySelector(".tab-active"+a);s=s||e.querySelector(a),s&&i(s),e.addEventListener("click",function(t){var e=t.target;r.call(e,a)&&i(e)})}.bind(items[i]))();
+		 for (var i = 0, len = items.length; i < len; i++) {			
+			
+			(function() {
+				var t, e = this,
+					a = "[data-tab]",
+					n = document.body,
+					r = n.matchesSelector || n.webkitMatchesSelector || n.mozMatchesSelector || n.msMatchesSelector,
+					o = function() {
+						var a = e.querySelectorAll("[data-tab-content]") || [];
+						for (t = 0; t < a.length; t++) {
+								a[t].style.display = "none";
+						}
+					},
+					i = function(n) {
+						var r = e.querySelectorAll(a) || [];
+						for (t = 0; t < r.length; t++) {
+							var i = r[t],
+								s = i.className.replace("tab-active", "").trim();
+								
+							i.className = s
+						}
+						o(), n.className += " tab-active";
+						var l = n.getAttribute("href"),
+							c = e.querySelector(l);
+						c && (c.style.display = "")
+					},
+					s = e.querySelector(".tab-active" + a);
+					s = s || e.querySelector(a), s && i(s), e.addEventListener("click", function(t) {
+						var e = t.target;
+						
+						r.call(e, a) && i(e)
+						
+						
+						ifTab = Object.prototype.toString.call(e) === '[object HTMLAnchorElement]';
+						if (ifTab) {
+							// oStr = Object.prototype.toString.call(e);
+
+							if (e.href.indexOf("#tab1")>0) {
+							
+								globalLastARTICLE = -1;
+								disableDivModify();
+								refreshInWardrobeSend();
+			
+								// alert("tab1");
+							} else if (e.href.indexOf("#tab2")>0) {   // New
+								
+								globalLastARTICLE = -1;
+								disableDivModify();
+								refreshRFIDSend();
+								
+								// alert("tab2");
+							} 
+						}
+						
+					})
+			}.bind(items[i]))();
 		 }
 	 
 		// Javascript meldet ja nicht richtig einen Fehler, deshalb nutze ich immer
@@ -229,6 +325,7 @@
 		//------------------------------------------------------------------------------
 		// Different WebSocket functions
 		//------------------------------------------------------------------------------
+		var globalLastARTICLE = -1;   // Quick and dirty
 		var ws = new WebSocket("ws://192.168.2.112:4001");
 
 		jQuery(document).ready(function($) {
@@ -285,18 +382,32 @@
 						
 					} else if (json.command === 'temp') {
 						
-						$("#tempLabel").text("Temperatur:"+json.data);
+						// $("#tempLabel").text("Temperatur:"+json.data);
 						
 					} else if (json.command === 'updateCloth') {
 						
-						$("#dataLabel").text("Update cloth = "+json.data+ " was ok");
+						// $("#dataLabel").text("Update cloth = "+json.data+ " was ok");
 						
 					} else if (json.command === 'dataInWardrobe') {
 						//------------------------------------------------------------------------------
 						// Get wardrobe data from websocket server
 						//------------------------------------------------------------------------------
 						
-						refreshInWardrobeGet(json.data);
+						refreshInWardrobeGet(json.data);   
+						
+					} else if (json.command === 'dataInCloth') {
+						//------------------------------------------------------------------------------
+						// Get cloth data from websocket server
+						//------------------------------------------------------------------------------
+						
+						refreshClothGet(json.data);   
+						
+					} else if (json.command === 'dataRFID') {
+						//------------------------------------------------------------------------------
+						// Get RFID data from websocket server
+						//------------------------------------------------------------------------------
+						
+						refreshRFIDGet(json.data);
 					
 					} else if (json.command === 'dataOutWardrobe') {
 						//------------------------------------------------------------------------------
@@ -333,6 +444,9 @@
 			//------------------------------------------------------------------------------
 			// Assign different functions to dialog elements, like buttons etc.
 			//------------------------------------------------------------------------------
+			// document.getElementById('tab2').click();
+			
+			
 			$('#fresh1').on('click', function() {
 			
 				refreshInWardrobeSend();
@@ -345,13 +459,38 @@
  
 			});
 
-			$('#icj19i').on('click', function() {
+			$('#buttonNew').on('click', function() {
 
 				createClothesSend();
 	 
 			});
+			
+			
+			$('#buttonChange').on('click', function() {
+
+				if (globalLastARTICLE > 0) {				
+					modifyClothesSend();
+				} else {
+					alert("Error: You have not bookmarked any cloth");
+				}
+				globalLastARTICLE = -1;
+				disableDivModify();
+	 
+			});
 
 			
+			$('#buttonCancelChange').on('click', function() {
+
+				globalLastARTICLE = -1;
+				disableDivModify();
+	 
+			});
+			
+			$('#buttonCancelNew').on('click', function() {
+
+				refreshInWardrobeSend();
+	 
+			});
 		
 			$('#myTempButton').on('click', function() {
 			
@@ -379,11 +518,35 @@
 			
 		});
 		
+		
+		function getClothData(artNr) {
+			//------------------------------------------------------------------------------
+			// Send command to server and want to get data for one cloth
+			//------------------------------------------------------------------------------
+			
+			var commandClnt = JSON.stringify({ command: 'getClothData', data: artNr} ); 
+			ws.send(commandClnt);
+				
+			console.log('Sende: ', commandClnt);
+				
+		}
+		
 		function refreshInWardrobeSend() {
 			//------------------------------------------------------------------------------
 			// Send command to server and want to get data for table 'InWardrobe'
 			//------------------------------------------------------------------------------
 			var commandClnt = JSON.stringify({ command: 'getInWardrobe', data: ''} ); 
+			ws.send(commandClnt);
+				
+			console.log('Sende: ', commandClnt);
+				
+		}
+		
+		function refreshRFIDSend() {
+			//------------------------------------------------------------------------------
+			// Send command to server and want to get data for table 'Tag'
+			//------------------------------------------------------------------------------
+			var commandClnt = JSON.stringify({ command: 'getRFID', data: ''} ); 
 			ws.send(commandClnt);
 				
 			console.log('Sende: ', commandClnt);
@@ -401,6 +564,11 @@
 			var sizebox = document.getElementById("i1dp2").value;
 			var colorbox = document.getElementById("i9nqx").value;
 			var numofusagebox = document.getElementById("ifp6t").value;
+			numofusagebox = parseInt(numofusagebox);
+			if(!numofusagebox)  {
+				numofusagebox = 0;
+			}
+			var tagID = $("#RFIDnew option:selected").val();			
 		
 			var buildJSon2="";
 
@@ -408,18 +576,99 @@
 											 category: catbox, 
 											 size:sizebox, 
 											 color: colorbox, 
-											 numberofusage:numofusagebox} );
+											 numberofusage:numofusagebox,
+											 tagID: tagID} );
+											 
 			//buildJSon2 = "[" + buildJSon2 + "]";
 			
 			// alert("clothes: " + buildJSon2);
 
-			var commandClnt = JSON.stringify({ command: 'createItem', data: buildJSon2 } ); 
-			
+
+			commandClnt = JSON.stringify({ command: 'createItem', data: buildJSon2 } ); 
 			ws.send(commandClnt);
 	
 			console.log('Sende: ', commandClnt);
 			// alert("clothes: " + buildJSon2);
+			
+			$('a[href="#tab1"]').click();
 				
+		}
+		
+		
+		function modifyClothesSend() {
+			//------------------------------------------------------------------------------
+			// Send command to server and save data in database'
+			//------------------------------------------------------------------------------
+
+			pdesc = $("#chdescription").val();
+			pcat = $("#chcategory").val();
+			psize = $("#chsize").val();
+			pcol = $("#chcolor").val();
+			pnum = $("#chnumberofusage").val();
+			pnum = parseInt(pnum);
+			if(!pnum)  {
+				pnum = 0;
+			}
+			partnr = $("#chid").val();
+			
+			// alert("modifyClothesSend:"+partnr);
+			
+			if ($("#chid").val.length > 0) {
+				var buildJSon2="";
+
+				buildJSon2 = JSON.stringify({ description: pdesc, 
+											 category: pcat, 
+											 size: psize, 
+											 color: pcol, 
+											 numberofusage: pnum,
+											 artNr: partnr} );
+												 
+				//buildJSon2 = "[" + buildJSon2 + "]";
+				
+				// alert("clothes: " + buildJSon2);
+
+				commandClnt = JSON.stringify({ command: 'modifyItem', data: buildJSon2 } ); 
+				ws.send(commandClnt);
+		
+				console.log('Sende: ', commandClnt);
+
+			} else {
+			
+				alert("Error: no cloth id");
+			}
+	
+		}
+		
+		
+		
+		function refreshClothGet(parJSonData) {
+			//------------------------------------------------------------------------------
+			// Process JSON data coming from server and fill table 'InWardrobe'
+			//------------------------------------------------------------------------------
+			var cloth = "";			
+			var clothes = [];		// Internal array of clothes
+			
+			receivedData = JSON.parse(parJSonData);
+			
+			numObjects = receivedData.length;
+			
+			if (numObjects != 1) {
+				alert("Error: No cloth found");
+			} else {
+
+				// Only one needed
+				receivedData.forEach(function(tmpObject){
+				
+					$("#chid").val(tmpObject.id);
+					$("#chdescription").val(tmpObject.description);
+					$("#chcategory").val(tmpObject.category);
+					$("#chsize").val(tmpObject.size);
+					$("#chcolor").val(tmpObject.color);
+					$("#chnumberofusage").val(tmpObject.numUsage);
+							
+				})
+			}
+		
 		}
 
 
@@ -427,26 +676,19 @@
 			//------------------------------------------------------------------------------
 			// Process JSON data coming from server and fill table 'InWardrobe'
 			//------------------------------------------------------------------------------
-			var cloth = "";			
-			var clothes = [];		// Internal array of clothes
-		
 			receivedData = JSON.parse(parJSonData);
 			
 			numObjects = receivedData.length;
 			
 			// alert("numObjects: " + numObjects);
-								
-			// cloth = "";
-			// clothes = [];
 			
-			i = 1;
 			var buildStringIN="";
 			var buildStringOUT="";
 			
 			receivedData.forEach(function(tmpObject){
-				tmpID = "delIN_"+tmpObject.id;
+				tmpCreaID = "delIN_"+tmpObject.id;
+				tmpModID = "modIN_"+tmpObject.id;
 				
-				// alert(i + "  tmpObject: " + tmpObject.id);
 				if (tmpObject.status) {				
 					
 					buildStringIN = buildStringIN +
@@ -457,11 +699,10 @@
 						"<td>"+tmpObject.size+"</td>"+
 						"<td>"+tmpObject.color+"</td>"+
 						"<td>"+tmpObject.numUsage+"</td>"+					
-						"<td><button type=\"button\" onClick=\"doDeleteSend('"+tmpObject.id+"');\" id=\""+tmpID+"\">delete</button></td>"+
+						"<td><button type=\"button\" onClick=\"doDeleteSend('"+tmpObject.id+"');\" id=\""+tmpCreaID+"\">delete</button></td>"+
+						"<td><button type=\"button\" onClick=\"doModifySend('"+tmpObject.id+"');\" id=\""+tmpModID+"\">modify</button></td>"+
 						"</tr>"
 						
-					
-					
 				} else {
 			
 					buildStringOUT = buildStringOUT +
@@ -472,7 +713,8 @@
 						"<td>"+tmpObject.size+"</td>"+
 						"<td>"+tmpObject.color+"</td>"+
 						"<td>"+tmpObject.numUsage+"</td>"+					
-						"<td><button type=\"button\" onClick=\"doDeleteSend('"+tmpObject.id+"');\" id=\""+tmpID+"\">delete</button></td>"+
+						"<td><button type=\"button\" onClick=\"doDeleteSend('"+tmpObject.id+"');\" id=\""+tmpCreaID+"\">delete</button></td>"+
+						"<td><button type=\"button\" onClick=\"doModifySend('"+tmpObject.id+"');\" id=\""+tmpModID+"\">modify</button></td>"+
 						"</tr>"	
 				
 				}
@@ -482,8 +724,30 @@
 			$("#tableIN").html(buildStringIN);  
 			$("#tableOUT").html(buildStringOUT);
 		
+		}
+		
+		
+		function refreshRFIDGet(parJSonData) {
+			//------------------------------------------------------------------------------
+			// Process JSON data coming from server and fill table 'RFID'
+			//------------------------------------------------------------------------------
+			receivedData = JSON.parse(parJSonData);
 			
-			// alert("Test4");
+			numObjects = receivedData.length;			
+			// alert("numObjects: " + numObjects);
+
+			var buildStringRFID="";
+			
+			receivedData.forEach(function(tmpObject){
+					
+				buildStringRFID = buildStringRFID +
+					"<option value='"+tmpObject.tagID+"'>"+
+					tmpObject.tagKey+
+					"</option>"
+
+			})
+			
+			$("#RFIDnew").html(buildStringRFID);  
 		
 		}
 		
@@ -496,10 +760,44 @@
 				
 			console.log('Sende: ', commandClnt);
 
-
 		}
-	
+		
+		
+		function enableDivModify() {
+			//------------------------------------------------------------------------------
+			// Show div element "#divmodify"
+			//------------------------------------------------------------------------------
+			$("#divmodify").removeAttr("style");
+			
+		}
+		
+		function disableDivModify() {
+			//------------------------------------------------------------------------------
+			// Hide div element "#divmodify"
+			//------------------------------------------------------------------------------			
+			$("#divmodify").attr("style","display: none;");
+			globalLastARTICLE = -1;
+			
+		}
+		
+		function doModifySend(artNr) {
+			//------------------------------------------------------------------------------
+			// Modify an article in database
+			//------------------------------------------------------------------------------
+			
+			disableDivModify();
+			globalLastARTICLE = artNr;
+			
+			if (globalLastARTICLE.length > 0) {
+				enableDivModify();
+			
+				getClothData(globalLastARTICLE);
+			} else {
+				alert("Error: You have not bookmarked any cloth");
+			}
+		}
 	
       </script>
    </body>
    <html>
+
