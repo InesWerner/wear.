@@ -1,4 +1,5 @@
 import pymssql
+import random
 
 from bo.tag import Tag
 from database.connection import Connection
@@ -47,14 +48,15 @@ class TagMapper(Connection):
     def findByTagID(self, tagID):
         cursor = self._conn.cursor()
         try:
-            command = "SELECT tagId, tagStatus FROM Tag WHERE tagId LIKE '{}'" \
+            command = "SELECT tagId, tagFree, tagKey FROM Tag WHERE tagId LIKE '{}'" \
                 .format(tagID)
             cursor.execute(command)
             tuples = cursor.fetchall()
-            (tagId,tagStatus) = tuples[0]
+            (tagId,tagFree, tagKey) = tuples[0]
             tag = Tag()
             tag.setTagID(tagId)
-            tag.setTagStatus(tagStatus)
+            tag.setTagFree(tagFree)
+            tag.setTagKey(tagKey)
         except IndexError:
             print("IndexError in TagMapper; findByTagID ",tagID)
             return None
@@ -75,13 +77,14 @@ class TagMapper(Connection):
             """
         cursor = self._conn.cursor()
         try:
-            command = "SELECT tagId, tagStatus FROM Tag WHERE tagId LIKE '{}'" \
+            command = "SELECT tagId, tagFree, tagKey FROM Tag WHERE tagId LIKE '{}'" \
                 .format(tag.getTagID())
             cursor.execute(command)
             tuples = cursor.fetchall()
-            (tagId,tagStatus) = tuples[0]
+            (tagId,tagFree, tagKey) = tuples[0]
             tag.setTagID(tagId)
-            tag.setTagStatus(tagStatus)
+            tag.setTagFree(tagFree)
+            tag.setTagKey(tagKey)
         except Exception:
             return None
         except pymssql.OperationalError:
@@ -102,11 +105,12 @@ class TagMapper(Connection):
         """
         cursor = self._conn.cursor()
         try:
+            randomnumber = "RFID000"+str(random.randint(0,1000));
             # HIER NOCH FRAGEN, OB TAG-ID SCHON VORHANDEN
-            command = "INSERT INTO dbo.Tag (tagID, tagStatus) VALUES ({},'{}')" \
-                .format(tag.getTagID(),tag.getTagStatus())
+            command = "INSERT INTO dbo.Tag (tagID, tagKey) VALUES ({},'{}')" \
+                .format(tag.getTagID(),randomnumber)
             cursor.execute(command)
-            print("Insert new Tag: ",tag.getTagID(),tag.getTagStatus())
+            print("Insert new Tag: ",tag.getTagID(),tag.getTagKey())
         except IndexError:
             print("IndexError in TagMapper; Insert ",tag.getTagID())
             return None
@@ -128,11 +132,12 @@ class TagMapper(Connection):
         """
         cursor = self._conn.cursor()
         try:
+            randomnumber = "RFID000"+ str(random.randint(0,1000));
             # HIER NOCH FRAGEN, OB TAG-ID SCHON VORHANDEN
-            command = "INSERT INTO dbo.Tag (tagID, tagStatus) VALUES ({},'{}')" \
-                .format(tagID,1)
+            command = "INSERT INTO dbo.Tag (tagID, tagKey) VALUES ({},'{}')" \
+                .format(tagID,randomnumber)
             cursor.execute(command)
-            print("Insert new Tag: ",tagID,1)
+            print("Insert new Tag: ",tagID,randomnumber)
         except IndexError:
             print("IndexError in TagMapper; Insert ",tagID)
         except pymssql.OperationalError:
@@ -154,7 +159,7 @@ class TagMapper(Connection):
         """
         cursor = self._conn.cursor()
         try:
-            command = "UPDATE Tag SET tagStatus = (CASE WHEN tagStatus = 1 THEN 0 ELSE 1 END ) WHERE tagId={}" \
+            command = "UPDATE Item SET status = (CASE WHEN status = 1 THEN 0 ELSE 1 END ) WHERE tagID={}" \
                 .format(tag.getTagID())
             cursor.execute(command)
             print("Update Tag: ",tag.getTagID())
@@ -182,7 +187,7 @@ class TagMapper(Connection):
         """
         cursor = self._conn.cursor()
         try:
-            command = "UPDATE Tag SET tagStatus = (CASE WHEN tagStatus = 1 THEN 0 ELSE 1 END ) WHERE tagId={}" \
+            command = "UPDATE Item SET status = (CASE WHEN status = 1 THEN 0 ELSE 1 END ) WHERE tagID={}" \
                 .format(tagID)
             cursor.execute(command)
             print("Update Tag: ",tagID)
@@ -194,4 +199,3 @@ class TagMapper(Connection):
         finally:
             self._conn.commit()
             cursor.close()
-
