@@ -1,0 +1,18 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ItemOutfitConnection](
+	[itemOutfitID] [int] IDENTITY(1,1) NOT NULL,
+	[outfitID] [int] NOT NULL,
+	[itemID] [int] NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ItemOutfitConnection] ADD PRIMARY KEY CLUSTERED 
+(
+	[itemOutfitID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[ItemOutfitConnection]  WITH CHECK ADD FOREIGN KEY([outfitID])
+REFERENCES [dbo].[Outfit] ([outfitID])
+GO

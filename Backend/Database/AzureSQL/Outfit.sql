@@ -1,0 +1,17 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Outfit](
+	[outfitID] [int] IDENTITY(1,1) NOT NULL,
+	[name] [varchar](255) NOT NULL,
+	[category] [varchar](255) NULL,
+	[description] [varchar](400) NULL,
+	[DELETED] [int] NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Outfit] ADD PRIMARY KEY CLUSTERED 
+(
+	[outfitID] ASC
+)WITH (STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF) ON [PRIMARY]
+GO

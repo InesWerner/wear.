@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">wear</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inside">Inside</string>
+    <string name="outside">Outside</string>
+    <string name="delete">DELETE</string>
+    <string name="all_items"><![CDATA[< All Items]]></string>
+    <string name="black">Black</string>
+</resources>

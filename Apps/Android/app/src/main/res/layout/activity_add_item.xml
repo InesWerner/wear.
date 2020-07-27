@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add">
+
+
+    <include
+        android:id="@+id/topbar"
+        layout="@layout/topbar"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar">
+
+        <TextView
+            android:id="@+id/select_tag"
+            android:layout_width="387dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:text="Select A Tag"
+            android:textColor="#A1A1A1"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinner_inputItemTag"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_tag"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/TextField_inputItemName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:hint="Name"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_inputItemTag"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <EditText
+            android:id="@+id/TextField_inputItemCategory"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:hint="Category"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@+id/TextField_inputItemBrand"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp" />
+        <EditText
+            android:id="@+id/TextField_inputItemBrand"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:hint="Brand"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@+id/TextField_inputItemName"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <EditText
+            android:id="@+id/TextField_inputItemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:hint="Description"
+            android:inputType="text"
+            app:layout_constraintTop_toBottomOf="@+id/TextField_inputItemCategory"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp" />
+
+        <EditText
+            android:id="@+id/TextField_inputItemSize"
+            android:layout_width="181dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:hint="Size"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextField_inputItemDescription"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/TextField_inputItemColor"
+            android:layout_width="195dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:hint="Color"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/TextField_inputItemSize"
+            app:layout_constraintTop_toBottomOf="@+id/TextField_inputItemDescription"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/button_createItem"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="36dp"
+            android:background="#03A9F4"
+            android:text="Create New Item"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextField_inputItemColor"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/addItemErrorMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Error Message"
+            android:textColor="#FF1D1D"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@+id/button_createItem"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="10dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:background="#DD000000"
+        app:itemIconTint="@drawable/item_selected"
+        app:itemTextColor="@drawable/item_selected"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_menu"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
